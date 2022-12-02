@@ -1,0 +1,51 @@
+const express = require('express')
+const router = express.Router()
+
+const mongoose = require('mongoose')
+const esquema = mongoose.Schema
+
+//creando esquema
+const esqProduto = new esquema({
+    nombreProducto: String,
+    unidadMed: String,
+    categoria: String,
+    descripcion: String,
+    idProducto: String
+})
+
+//Modelo
+const ModeloProducto = mongoose.model('producto', esqProduto)
+module.exports = router
+
+/*
+router.get('/prueba', (req, res)=>{
+    res.end('mensaje desde modelo produto')
+})
+*/
+//Envio de informacion a base de datos
+router.post('/agregarProducto', (req, res)=>{
+    const nuevoproducto = new ModeloProducto({
+        nombreProducto: req.body.nombreProducto,
+        unidadMed: req.body.unidadMed,
+        categoria: req.body.categoria,
+        descripcion: req.body.descripcion,
+        idProducto: req.body.idProducto,
+    })
+
+    nuevoproducto.save(function(err){
+        if(!err){
+            res.send('Producto agregado correctamente')
+        }else{
+            res.send('err')
+        }
+    })
+})
+
+//Obtener los productos      /obtenerproductos
+/*router.get('/obtenerproductos', (req, res)=>{
+    const nuevoproducto = new ModeloProducto({
+        ModeloProducto.find({}, function(docs, err)
+    })
+    
+    })*/ //Cierre router get
+    
