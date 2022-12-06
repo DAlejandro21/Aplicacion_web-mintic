@@ -41,11 +41,16 @@ router.post('/agregarProducto', (req, res)=>{
     })
 })
 
-//Obtener los productos      /obtenerproductos
-/*router.get('/obtenerproductos', (req, res)=>{
-    const nuevoproducto = new ModeloProducto({
-        ModeloProducto.find({}, function(docs, err)
-    })
+//Obtener los productos de la bd
+router.get('/obtenerproductos', (req, res)=>{
+        ModeloProducto.find({}, function(docs, err){
+            if(!err){
+                res.send(docs)
+            }else{
+                res.send(err)
+            }
+        })
+    }) //Cierre router.get
     
-    })*/ //Cierre router get
-    
+
+    //Obtener producto A EDITAR de la bd
