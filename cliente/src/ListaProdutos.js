@@ -32,16 +32,16 @@ function ListaProductos() {
       <h2>Ver lista de productos</h2>
       <table className="table">
         <thead>
-            <tr>
-              <th>Id</th>
-              <th>Nombre de Producto</th>
-              <th>Unidad M.</th>
-              <th>Categoria</th>
-              <th>Descripcion</th>
-              <td>-</td>
-            </tr>
+          <tr>
+            <th>Id</th>
+            <th>Nombre de Producto</th>
+            <th>Unidad M.</th>
+            <th>Categoria</th>
+            <th>Descripcion</th>
+            <td>-</td>
+          </tr>
         </thead>
-        </table>
+      </table>
       {listaproductos}
     </div>
   );

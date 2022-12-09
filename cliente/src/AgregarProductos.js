@@ -57,7 +57,7 @@ function AgregarProductos() {
           <button onClick={agregarProducto} className="btn btn-success">Agregar</button>
         </div>
     </div>
-  );
+  )
 }
 
 export default AgregarProductos

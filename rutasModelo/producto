@@ -17,7 +17,7 @@ const esqProduto = new esquema({
 const ModeloProducto = mongoose.model('producto', esqProduto)
 module.exports = router
 
-/*
+/* ruta de prueba
 router.get('/prueba', (req, res)=>{
     res.end('mensaje desde modelo produto')
 })
@@ -53,4 +53,31 @@ router.get('/obtenerproductos', (req, res)=>{
     }) //Cierre router.get
     
 
-    //Obtener producto A EDITAR de la bd
+//Obtener producto A EDITAR de la bd
+router.post('/obtenerdataproducto', (req, res)=>{
+    ModeloProducto.find({idProducto: req.body.idProducto}, function(docs, err){
+        if(!err){
+            res.send(docs)
+        }else{
+            res.send(err)
+        }
+    })
+}) //Cierre router.post -- - editar
+
+//Ruta para enviar los datos modificados a la bd
+router.post('/actualizarproducto', (req, res)=>{
+    ModeloProducto.findOneAndUpdate({idProducto:req.body.idProducto}, {
+        nombreProducto:req.body.nombreProducto,
+        unidadMed: req.body.unidadMed,
+        categoria: req.body.categoria,
+        descripcion: req.body.descripcion
+    }, (err) => {
+        if(!err) {
+            res.send('Produto actualizado correctamente')
+        }else{
+            res.send('err')
+        }
+    })
+})
+
+//

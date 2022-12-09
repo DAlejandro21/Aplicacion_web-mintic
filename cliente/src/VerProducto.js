@@ -13,9 +13,10 @@ function VerProducto({ producto }) {
           <td>{producto.categoria}</td>
           <td>{producto.descripcion}</td>
           <td>
-            <Link to={'/editarproducto/${producto.idProducto}'}>
+            <Link to={`/editarproducto/${producto.idProducto}`}>
               <li class="btn btn-primary">Editar</li>
             </Link>
+
             &nbsp;
             <button type="button" class="btn btn-danger">Eliminar</button>
           </td>
