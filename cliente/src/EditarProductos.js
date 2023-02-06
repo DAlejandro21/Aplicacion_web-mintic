@@ -1,10 +1,11 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
-import { useParams,} from "react-router-dom"
+import { useNavigate, useParams,} from "react-router-dom"
 
 function EditarProductos() {
 
   const params = useParams()
+  const navegar = useNavigate()
 
   //Hooks
   
@@ -25,7 +26,7 @@ function EditarProductos() {
       setDescripcion(dataproducto.descripcion)
 
     })
-  }, [])
+  })
 
   function editarproducto(){
 
@@ -40,13 +41,14 @@ function EditarProductos() {
     }
 
     //peticion al servidor por medio de la ruta
-
+    
     axios.post('/api/producto/actualizarproducto', actualizarproducto)
     .then (res => {
       console.log(res.data)
       alert(res.data)
     })
     .then(err => (console.log(err)))
+    navegar('/')
   
   }
 
@@ -65,7 +67,7 @@ function EditarProductos() {
           <input type="text" className="form-control" id="unidadMed" value={unidadMed} onChange={(e)=>(setUnidadMed(e.target.value))} placeholder="Indique la unidad de medida" autoComplete="off" required/>
         </div>
         <div className="col-md-6">
-        <input type="text" className="form-control" id="categoria" value={categoria} onChange={(e)=>(setCategoria(e.target.value))} placeholder="Indique la categoria" autoComplete="off" required/>
+          <input type="text" className="form-control" id="categoria" value={categoria} onChange={(e)=>(setCategoria(e.target.value))} placeholder="Indique la categoria" autoComplete="off" required/>
         </div>
         <div className="col-md-6">
           <input
@@ -84,10 +86,3 @@ function EditarProductos() {
   )
 }
 export default EditarProductos
-
-/*
-    <div>
-      <h2>Editar productos</h2>
-      <h4>{params.idProducto}</h4>
-    </div>
-    */

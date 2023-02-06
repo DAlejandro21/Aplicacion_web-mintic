@@ -62,15 +62,17 @@ router.post('/obtenerdataproducto', (req, res)=>{
             res.send(err)
         }
     })
-}) //Cierre router.post -- - editar
+}) //Cierre router.post --- editar
 
 //Ruta para enviar los datos modificados a la bd
+
 router.post('/actualizarproducto', (req, res)=>{
     ModeloProducto.findOneAndUpdate({idProducto:req.body.idProducto}, {
-        nombreProducto:req.body.nombreProducto,
+        nombreProducto: req.body.nombreProducto,
         unidadMed: req.body.unidadMed,
         categoria: req.body.categoria,
         descripcion: req.body.descripcion
+        
     }, (err) => {
         if(!err) {
             res.send('Produto actualizado correctamente')
@@ -80,4 +82,13 @@ router.post('/actualizarproducto', (req, res)=>{
     })
 })
 
-//
+//Eliminar producto A EDITAR de la bd
+router.post('/borrarproducto', (req, res)=>{
+    ModeloProducto.findOneAndDelete({idProducto: req.body.idProducto}, (err)=> {
+        if (!err) {
+            res.send('Su producto ha sido eliminado')
+        }else{
+            res.send(   err)
+        }
+    })
+})//cierre router.post --- eliminar

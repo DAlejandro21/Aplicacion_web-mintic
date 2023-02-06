@@ -7,14 +7,13 @@ function ListaProductos() {
   const [dataproductos, setdataproductos] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("/api/producto/obtenerproductos")
-      .then((res) => {
+    axios.get("/api/producto/obtenerproductos").then((res) => {
         console.log(res.data);
-        setdataproductos(res.data);
+        setdataproductos(res.data)
+
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err)
       });
   });
 
